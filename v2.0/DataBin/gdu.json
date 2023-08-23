@@ -1,14 +1,14 @@
 {
-    "id": 1,
-    "name": "Trường Đại học GTVT tp Hồ Chí Minh",
-    "schoolCode": "UT",
+    "id": 2,
+    "name": "Trường Đại học Gia Định",
+    "schoolCode": "gdu",
     "calendarName": "Lịch {{name}} ({{schoolCode}})",
     "requiredData": {
         "k": true
     },
     "informations": {
         "isHttps": true,
-        "host": "sv.ut.edu.vn",
+        "host": "sinhvien.giadinh.edu.vn",
         "pathGetLich": "/SinhVienTraCuu/GetDanhSachLichTheoTuan",
         "pathInputInformation": "/tra-cuu-thong-tin.html",
         "dataLich": "k={{k}}&pNgayHienTai={{pNgayHienTai}}&pLoaiLich={{pLoaiLich}}"

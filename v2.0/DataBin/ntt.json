@@ -1,14 +1,14 @@
 {
-    "id": 1,
-    "name": "Trường Đại học GTVT tp Hồ Chí Minh",
-    "schoolCode": "UT",
+    "id": 3,
+    "name": "Trường Đại học Nguyễn Tất Thành tp Hồ Chí Minh",
+    "schoolCode": "NTT",
     "calendarName": "Lịch {{name}} ({{schoolCode}})",
     "requiredData": {
         "k": true
     },
     "informations": {
         "isHttps": true,
-        "host": "sv.ut.edu.vn",
+        "host": "phongdaotao.ntt.edu.vn",
         "pathGetLich": "/SinhVienTraCuu/GetDanhSachLichTheoTuan",
         "pathInputInformation": "/tra-cuu-thong-tin.html",
         "dataLich": "k={{k}}&pNgayHienTai={{pNgayHienTai}}&pLoaiLich={{pLoaiLich}}"
