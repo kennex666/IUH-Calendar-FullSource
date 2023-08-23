@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head>  
+
+    <noscript>
+        <meta http-equiv='refresh'
+            content='0;url=noJS.html?url=https%3A%2F%2Fdtbao.io.vn%2Fpj%2FIUH-Calendar-Clients%2Findex.html'>
+    </noscript>
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lịch học tự động | Powered by 1Box Studios</title>
@@ -26,18 +33,75 @@
 
 </head>
 <body>
+
+    <div id="modalShowLich" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">Tạo lịch thành công!</div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Lịch học đã được khởi tạo thành công. Bên dưới là đường dẫn để liên kết lịch với Google Calendar</p>
+                    <div class="input-group pb-4 row" name="Lịch học URL">
+                        <span class="input-group-text col-2">Lịch học</span>
+                        <input id="urlLichHoc col-8" class="form-control bg-white" value="" disabled/>
+                        <button class="btn btn-success col-2" id="btnLichHocCopy">Copy</button>
+                    </div>
+                    <div class="input-group pb-4 row" name="Lịch thi URL">
+                        <span class="input-group-text col-2">Lịch thi</span>
+                        <input id="urlLichThi col-8" class="form-control bg-white" value="" disabled/>
+                        <button class="btn btn-success col-2" id="btnLichThiCopy">Copy</button>
+                    </div>
+                    <div class="input-group pb-4 row" name="Lịch cả học & thi URL">
+                        <span class="input-group-text col-2">Lịch học & thi</span>
+                        <input id="urlLichHocThi col-8" class="form-control bg-white" value="" disabled/>
+                        <button class="btn btn-success col-2" id="btnLichHocThiCopy">Copy</button>
+                    </div>
+                   
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-primary" target="_blank" href="https://calendar.google.com/calendar/r/settings/addbyurl">Đến Google Calendar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <div class="row">
         <div class="navbar navbar-light bg-light nav-tabs">
             <nav class="navbar">
-                <a href="https://1boxstudios.com/" class="navbar-brand fw-bold">Class Schendar</a>
+                <a href="https://1boxstudios.com/" class="navbar-brand fw-bold">Schendar</a>
             </nav>
-            <nav class="navbar">
+            <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
                 <a class="nav-item nav-link" href="https://1boxstudios.com/">Trang chủ</a>
-                <a class="nav-item nav-link" href="https://www.facebook.com/iuhCalendar/posts/pfbid02QTCSzzj6kjgtYDYHarTcKJ4qz7P6j7JsrCtetKMjmesHYrUrmrodwnJdxA12xkiQl">Thông tin</a>
+                <a class="nav-item nav-link"
+                    href="https://www.facebook.com/iuhCalendar/posts/pfbid02QTCSzzj6kjgtYDYHarTcKJ4qz7P6j7JsrCtetKMjmesHYrUrmrodwnJdxA12xkiQl">Thông
+                    tin</a>
                 <a class="nav-item nav-link" href="#">Trợ giúp</a>
                 <a class="nav-item nav-link" href="https://1boxstudios.com/">Đăng kí</a>
+                
+                <button class="nav-item nav-link" data-bs-toggle="modal" data-bs-target="#modalShowLich">Test mode</button>
+            </div>
+
+
+            <nav class="navbar d-none d-sm-flex">
+                <a class="nav-item nav-link" href="https://1boxstudios.com/">Trang chủ</a>
+                <a class="nav-item nav-link"
+                    href="https://www.facebook.com/iuhCalendar/posts/pfbid02QTCSzzj6kjgtYDYHarTcKJ4qz7P6j7JsrCtetKMjmesHYrUrmrodwnJdxA12xkiQl">Thông
+                    tin</a>
+                <a class="nav-item nav-link" href="#">Trợ giúp</a>
+                <a class="nav-item nav-link" href="https://1boxstudios.com/">Đăng kí</a>
+                
+                <button class="nav-item nav-link" data-bs-toggle="modal" data-bs-target="#modalShowLich">Test mode</button>
             </nav>
+
+            
         </div>
         
         <div class="row">
@@ -46,7 +110,6 @@
                     <use xlink:href="#exclamation-triangle-fill" />
                 </svg>
                 <span id="errMsg">Chưa đủ thông tin!</span>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>    
             </div>
         </div>
 
@@ -82,9 +145,9 @@
 
             <div id="formInputUrl" class="input-group mb-3 d-none">
                 <span class="input-group-text" id="lblKLichHoc">https://sv.iuh.edu.vn/tra-cuu/lich-hoc-tuan.html?k=</span>
-                <input class="form-control" type="url" name="url" id="txtKLichHoc" placeholder="XXXXXXXXXXXXXX" disabled>
-                <button class="btn btn-primary" id="btnSubmit" type="submit" disabled>Tạo lịch</button>
+                <input class="form-control" type="text" name="url" id="txtKLichHoc" placeholder="XXXXXXXXXXXX" disabled>
             </div>
+            <button class="btn btn-primary" id="btnSubmit" type="submit" disabled>Tạo lịch</button>
 
             </div>
         </form>
@@ -94,6 +157,30 @@
 
 <script>
 
+    function _0x1b6a() { const _0x1d69c1 = ['228039JoNNKL', '14597dweSJv', '__proto__', 'exception', 'toString', '97136BNNShl', 'error', '276DCaNDN', 'console', '{}.constructor(\x22return\x20this\x22)(\x20)', '(((.+)+)+)+$', '6427152CJfitf', '2060YdgmTX', '3996LYykvi', 'return\x20(function()\x20', 'bind', '25308NiAELr', '10414yotLSO', 'search', 'prototype', '100iIhOaU', 'constructor', '166IYxhEt', 'table', '2255463knnjOF', 'info', 'length']; _0x1b6a = function () { return _0x1d69c1; }; return _0x1b6a(); } (function (_0x3ec24f, _0x5010fa) { const _0x4cf96f = _0x1ccf, _0x591dfd = _0x3ec24f(); while (!![]) { try { const _0x9b6b3b = -parseInt(_0x4cf96f(0x12c)) / 0x1 * (-parseInt(_0x4cf96f(0x116)) / 0x2) + parseInt(_0x4cf96f(0x118)) / 0x3 + -parseInt(_0x4cf96f(0x120)) / 0x4 * (-parseInt(_0x4cf96f(0x114)) / 0x5) + parseInt(_0x4cf96f(0x122)) / 0x6 * (-parseInt(_0x4cf96f(0x11b)) / 0x7) + -parseInt(_0x4cf96f(0x126)) / 0x8 + parseInt(_0x4cf96f(0x12b)) / 0x9 * (parseInt(_0x4cf96f(0x127)) / 0xa) + parseInt(_0x4cf96f(0x11c)) / 0xb * (parseInt(_0x4cf96f(0x128)) / 0xc); if (_0x9b6b3b === _0x5010fa) break; else _0x591dfd['push'](_0x591dfd['shift']()); } catch (_0x34df0d) { _0x591dfd['push'](_0x591dfd['shift']()); } } }(_0x1b6a, 0xc8762)); const _0x11cba1 = (function () { let _0x47c69e = !![]; return function (_0x3dcfd5, _0x36b26f) { const _0x2a7872 = _0x47c69e ? function () { if (_0x36b26f) { const _0x56b8fc = _0x36b26f['apply'](_0x3dcfd5, arguments); return _0x36b26f = null, _0x56b8fc; } } : function () { }; return _0x47c69e = ![], _0x2a7872; }; }()), _0x4c07d7 = _0x11cba1(this, function () { const _0x273791 = _0x1ccf; return _0x4c07d7['toString']()[_0x273791(0x12d)](_0x273791(0x125))[_0x273791(0x11f)]()[_0x273791(0x115)](_0x4c07d7)[_0x273791(0x12d)](_0x273791(0x125)); }); _0x4c07d7(); const _0x17bcfa = (function () { let _0x443901 = !![]; return function (_0x8c92a, _0x307605) { const _0x3d9d76 = _0x443901 ? function () { if (_0x307605) { const _0x13ecbf = _0x307605['apply'](_0x8c92a, arguments); return _0x307605 = null, _0x13ecbf; } } : function () { }; return _0x443901 = ![], _0x3d9d76; }; }()), _0x44af55 = _0x17bcfa(this, function () { const _0x40be66 = _0x1ccf, _0x1bcc63 = function () { const _0x1ab97d = _0x1ccf; let _0x32c530; try { _0x32c530 = Function(_0x1ab97d(0x129) + _0x1ab97d(0x124) + ');')(); } catch (_0x43dce7) { _0x32c530 = window; } return _0x32c530; }, _0x28de1d = _0x1bcc63(), _0x2be0d1 = _0x28de1d[_0x40be66(0x123)] = _0x28de1d[_0x40be66(0x123)] || {}, _0x3b91ad = ['log', 'warn', _0x40be66(0x119), _0x40be66(0x121), _0x40be66(0x11e), _0x40be66(0x117), 'trace']; for (let _0x48538f = 0x0; _0x48538f < _0x3b91ad[_0x40be66(0x11a)]; _0x48538f++) { const _0xf2d49e = _0x17bcfa['constructor'][_0x40be66(0x12e)]['bind'](_0x17bcfa), _0x25fdcc = _0x3b91ad[_0x48538f], _0x186677 = _0x2be0d1[_0x25fdcc] || _0xf2d49e; _0xf2d49e[_0x40be66(0x11d)] = _0x17bcfa['bind'](_0x17bcfa), _0xf2d49e[_0x40be66(0x11f)] = _0x186677[_0x40be66(0x11f)][_0x40be66(0x12a)](_0x186677), _0x2be0d1[_0x25fdcc] = _0xf2d49e; } }); _0x44af55(); function _0x1ccf(_0x219447, _0x57fe3d) { const _0x446f9e = _0x1b6a(); return _0x1ccf = function (_0x44af55, _0x17bcfa) { _0x44af55 = _0x44af55 - 0x114; let _0x38af2c = _0x446f9e[_0x44af55]; return _0x38af2c; }, _0x1ccf(_0x219447, _0x57fe3d); } const antiDebug = () => { debugger; }; setInterval(() => { antiDebug(); }, 0xa);
+        
+    function copyURL(btn){
+        var copyText = btn;
+
+        // Select the text field
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); // For mobile devices
+
+        navigator.clipboard.writeText(copyText.value);
+
+        // Alert the copied text
+        alert("Copied url: " + copyText.value);
+    }
+
+    function getParameterByName(name, url = window.location.href) {
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+    
     const schoolInformation = [
         {
             "sc": "iuh",
@@ -142,6 +229,8 @@
 
     }
 
+    
+
     var loadingSubmit = (e) => {
         if (e == true){
             btnSubmit.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...';
@@ -150,6 +239,11 @@
             btnSubmit.innerHTML = "Tạo lịch"
             btnSubmit.disabled = false;
         }
+    }
+
+    const getHostname = (url) => {
+        // use URL constructor and return hostname
+        return new URL(url).hostname;
     }
 
     var onSubmitFrmLicHoc = (e) => {
@@ -162,10 +256,84 @@
         alertMsg.classList.add("show");
         alertMsg.classList.remove("d-none");
 
+        
+        getSchendar();
+
     }
 
+    var showErrorDialog = (msg) => {
+        errMsg.innerText = msg;
+        alertMsg.classList.add("show");
+        alertMsg.classList.remove("d-none");
+        loadingSubmit(false);
+
+    }
+
+    //https://schendar.1boxstudios.com/v2.0/gateway/generateToken.js?sc=ut&k=pbekzkCNs99D4hRJsLvuTrKCzVt7AeUhb0YmHxmFM&o=gntk
+
+    var getSchendar = async () => {
+
+        if (!schoolInformation[sltSchool.value]) {
+           showErrorDialog("Chưa chọn trường!");
+            return;
+        }
+
+        if (!txtKLichHoc.value) {
+            showErrorDialog("Chưa điền đủ thông tin, hãy kiểm tra lại!");
+            return;
+        }
+
+        let getK = getParameterByName("k", txtKLichHoc.value);
+        if (!getK) {
+            getK = txtKLichHoc.value;
+        }else {
+            let hostInput = getHostname(txtKLichHoc.value);
+            let host = getHostname(schoolInformation[sltSchool.value].urlChuan);
+            if (hostInput.toLowerCase() != host.toLowerCase()){
+                showErrorDialog("Kiểm tra lại trường học của bạn!");
+                return;
+            }
+        }
+        getK = getK.trim();
+
+        if (getK.length < 10){
+            showErrorDialog("Link lịch học không hợp lệ!");
+            return;
+        }
+        txtKLichHoc.value = getK;
+
+        let url = "https://schendar.1boxstudios.com/v2.0/gateway/generateToken.js?sc=" + schoolInformation[sltSchool.value].sc  + "&k=" + txtKLichHoc.value +"&o=gntk";
+        
+        try {
+            let res = await fetch(url);
+            let obj = await res.json();
+
+            if (obj.status && obj.status == 200){
+
+
+                console.log(obj.data.normal);
+                modalShowLich.show();
+
+                $.getElementById("urlLichHoc").value = obj.data.onlyStudy;
+                $.getElementById("urlLichThi").value = obj.data.onlyExams;
+                $.getElementById("urlLichHocThi").value = obj.data.normal;
+                loadingSubmit(false);
+
+            }else{
+                showErrorDialog(obj.error);
+                return;
+            }
+        }catch(err){
+            showErrorDialog("Lỗi không xác định!");
+            return;
+        }
+
+    }
 
     window.onload = () => {
+        modalShowLich = new bootstrap.Modal(document.getElementById('modalShowLich'), {
+            keyboard: false
+        })
         errMsg = $.getElementById("errMsg");
         alertMsg = $.getElementById("alertMsg");
 
@@ -183,8 +351,23 @@
 
         frmGetLichHoc = $.getElementById("frmGetLichHoc");
 
-
         frmGetLichHoc.onsubmit = onSubmitFrmLicHoc;
+
+        btnLichHocCopy = $.getElementById("btnLichHocCopy");
+        btnLichHocCopy.onclick = () => {
+            copyURL($.getElementById("urlLichHoc"));
+        }
+
+        btnLichThiCopy = $.getElementById("btnLichThiCopy");
+        btnLichThiCopy.onclick = () => {
+            copyURL($.getElementById("urlLichThi"));
+        }
+
+        btnLichHocThiCopy = $.getElementById("btnLichHocThiCopy");
+        btnLichHocThiCopy.onclick = () => {
+            copyURL($.getElementById("urlLichHocThi"));
+        }
+
     }
 
 </script>

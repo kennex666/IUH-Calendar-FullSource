@@ -1,9 +1,27 @@
 <?php
 error_reporting(0);
 ini_set('display_errors', 1);
+$allowedOrigins = array(
+    'http://127.0.0.1:5500', // Your frontend domain
+    'https://dtbao.io.vn',   // Another allowed domain
+);
 
+$origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
+
+if (in_array($origin, $allowedOrigins)) {
+    header("Access-Control-Allow-Origin: " . $origin);
+    header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type");
+}
+
+// Check if it's a preflight OPTIONS request and respond with CORS headers
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    header("HTTP/1.1 204 No Content");
+    exit();
+}
 define("_URL_API", "https://api-iuh.1boxstudios.cf/v2.0/gateway/calendar.js?");
 
+header("Content-Type: application/json");
 
 $dataHeader = array();
 $dataCalendar = "";
