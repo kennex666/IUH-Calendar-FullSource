@@ -322,10 +322,12 @@
 
             }else{
                 showErrorDialog(obj.error);
+                loadingSubmit(false);
                 return;
             }
         }catch(err){
             showErrorDialog("Lỗi không xác định!");
+            loadingSubmit(false);
             return;
         }
 
