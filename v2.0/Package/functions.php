@@ -139,7 +139,7 @@ function analyticsData($data, $loaiLich = 1)
     $data = explode(
 
         '<tr role="row">',
-        $data,
+        $data
 
     );
 
@@ -217,12 +217,12 @@ function createCalendar($getData)
 {
     global $event;
     if (is_null($getData['mon']['time'])) {
-        $event->addEvent(date('d/m/Y H:i', time() + 86400),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.", '');
-        $event->addEvent(date('d/m/Y H:i', time() + 172800),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.", '');
-        $event->addEvent(date('d/m/Y H:i', time() + 259200),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.", '');
-        $event->addEvent(date('d/m/Y H:i', time() + 345600),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.", '');
-        $event->addEvent(date('d/m/Y H:i', time() + 432000),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.", '');
-        $event->addEvent(date('d/m/Y H:i', time() + 518400),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.", '');
+        $event->addEvent(date('d/m/Y H:i', time() + 86400),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.\\nLink: m.me/DThaiBao616 hoặc contact@1boxstudios.com", '');
+        $event->addEvent(date('d/m/Y H:i', time() + 172800),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.\\nLink: m.me/DThaiBao616 hoặc contact@1boxstudios.com", '');
+        $event->addEvent(date('d/m/Y H:i', time() + 259200),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.\\nLink: m.me/DThaiBao616 hoặc contact@1boxstudios.com", '');
+        $event->addEvent(date('d/m/Y H:i', time() + 345600),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.\\nLink: m.me/DThaiBao616 hoặc contact@1boxstudios.com", '');
+        $event->addEvent(date('d/m/Y H:i', time() + 432000),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.\\nLink: m.me/DThaiBao616 hoặc contact@1boxstudios.com", '');
+        $event->addEvent(date('d/m/Y H:i', time() + 518400),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.\\nLink: m.me/DThaiBao616 hoặc contact@1boxstudios.com", '');
         $event->save();
         $event->show();
         exit();

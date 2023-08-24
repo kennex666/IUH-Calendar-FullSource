@@ -32,12 +32,12 @@ define('_TRANS_INTO_TIME', $dataSchool['TranslateTime']);
 $event = new ObxStudios\ICS();
 
 if ($_GET['timeGenerate'] + 331536000 < time()) {
-    $event->addEvent(date('d/m/Y H:i', time() + 86400),  date('d/m/Y H:i', time()), "Lịch học của bạn đã hết hạn!", "Hãy vào Google gỡ lịch và cài lại nhé!", '');
-    $event->addEvent(date('d/m/Y H:i', time() + 172800),  date('d/m/Y H:i', time()), "Lịch học của bạn đã hết hạn!", "Hãy vào Google gỡ lịch và cài lại nhé!", '');
-    $event->addEvent(date('d/m/Y H:i', time() + 259200),  date('d/m/Y H:i', time()), "Lịch học của bạn đã hết hạn!", "Hãy vào Google gỡ lịch và cài lại nhé!", '');
-    $event->addEvent(date('d/m/Y H:i', time() + 345600),  date('d/m/Y H:i', time()), "Lịch học của bạn đã hết hạn!", "Hãy vào Google gỡ lịch và cài lại nhé!", '');
-    $event->addEvent(date('d/m/Y H:i', time() + 432000),  date('d/m/Y H:i', time()), "Lịch học của bạn đã hết hạn!", "Hãy vào Google gỡ lịch và cài lại nhé!", '');
-    $event->addEvent(date('d/m/Y H:i', time() + 518400),  date('d/m/Y H:i', time()), "Lịch học của bạn đã hết hạn!", "Hãy vào Google gỡ lịch và cài lại nhé!", '');
+    $event->addEvent(date('d/m/Y H:i', time() + 86400),  date('d/m/Y H:i', time()), "Lịch học của bạn đã hết hạn!", "Hãy vào Google để gỡ lịch và cài lại nhé!\\nLink: https://1boxstudios.com/schendar", '');
+    $event->addEvent(date('d/m/Y H:i', time() + 172800),  date('d/m/Y H:i', time()), "Lịch học của bạn đã hết hạn!", "Hãy vào Google để gỡ lịch và cài lại nhé!\\nLink: https://1boxstudios.com/schendar", '');
+    $event->addEvent(date('d/m/Y H:i', time() + 259200),  date('d/m/Y H:i', time()), "Lịch học của bạn đã hết hạn!", "Hãy vào Google để gỡ lịch và cài lại nhé!\\nLink: https://1boxstudios.com/schendar", '');
+    $event->addEvent(date('d/m/Y H:i', time() + 345600),  date('d/m/Y H:i', time()), "Lịch học của bạn đã hết hạn!", "Hãy vào Google để gỡ lịch và cài lại nhé!\\nLink: https://1boxstudios.com/schendar", '');
+    $event->addEvent(date('d/m/Y H:i', time() + 432000),  date('d/m/Y H:i', time()), "Lịch học của bạn đã hết hạn!", "Hãy vào Google để gỡ lịch và cài lại nhé!\\nLink: https://1boxstudios.com/schendar", '');
+    $event->addEvent(date('d/m/Y H:i', time() + 518400),  date('d/m/Y H:i', time()), "Lịch học của bạn đã hết hạn!", "Hãy vào Google để gỡ lịch và cài lại nhé!\\nLink: https://1boxstudios.com/schendar", '');
 
     $event->save();
     $event->show();
