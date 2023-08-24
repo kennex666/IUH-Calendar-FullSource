@@ -4,9 +4,14 @@
 
     <noscript>
         <meta http-equiv='refresh'
-            content='0;url=noJS.html?url=https%3A%2F%2Fdtbao.io.vn%2Fpj%2FIUH-Calendar-Clients%2Findex.html'>
+            content='0;url=noJS.html?src=https%3A%2F%2Fpj.dtbao.io.vn%2Fpj%2FSchendar-Clients%2Findex.html'>
     </noscript>
 
+    <style>
+        #txtKLichHoc {
+            min-width: 25%;
+        }
+    </style>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,20 +48,20 @@
                 </div>
                 <div class="modal-body">
                     <p>Lịch học đã được khởi tạo thành công. Bên dưới là đường dẫn để liên kết lịch với Google Calendar</p>
-                    <div class="input-group pb-4 row" name="Lịch học URL">
-                        <span class="input-group-text col-2">Lịch học</span>
-                        <input id="urlLichHoc col-8" class="form-control bg-white" value="" disabled/>
-                        <button class="btn btn-success col-2" id="btnLichHocCopy">Copy</button>
+                    <div class="input-group pb-4" name="Lịch học URL">
+                        <span class="input-group-text">Lịch học</span>
+                        <input id="urlLichHoc" class="form-control bg-white" value="" disabled/>
+                        <button class="btn btn-success" id="btnLichHocCopy">Copy</button>
                     </div>
-                    <div class="input-group pb-4 row" name="Lịch thi URL">
-                        <span class="input-group-text col-2">Lịch thi</span>
-                        <input id="urlLichThi col-8" class="form-control bg-white" value="" disabled/>
-                        <button class="btn btn-success col-2" id="btnLichThiCopy">Copy</button>
+                    <div class="input-group pb-4" name="Lịch thi URL">
+                        <span class="input-group-text">Lịch thi</span>
+                        <input id="urlLichThi" class="form-control bg-white" value="" disabled/>
+                        <button class="btn btn-success" id="btnLichThiCopy">Copy</button>
                     </div>
-                    <div class="input-group pb-4 row" name="Lịch cả học & thi URL">
-                        <span class="input-group-text col-2">Lịch học & thi</span>
-                        <input id="urlLichHocThi col-8" class="form-control bg-white" value="" disabled/>
-                        <button class="btn btn-success col-2" id="btnLichHocThiCopy">Copy</button>
+                    <div class="input-group pb-4" name="Lịch cả học & thi URL">
+                        <span class="input-group-text">Lịch học & thi</span>
+                        <input id="urlLichHocThi" class="form-control bg-white" value="" disabled/>
+                        <button class="btn btn-success" id="btnLichHocThiCopy">Copy</button>
                     </div>
                    
                 </div>
@@ -71,7 +76,7 @@
         <div class="row">
         <div class="navbar navbar-light bg-light nav-tabs">
             <nav class="navbar">
-                <a href="https://1boxstudios.com/" class="navbar-brand fw-bold">Schendar</a>
+                <a href="https://facebook.com/103211735992722" class="navbar-brand fw-bold">Schendar (Test)</a>
             </nav>
             <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,7 +88,7 @@
                 <a class="nav-item nav-link"
                     href="https://www.facebook.com/iuhCalendar/posts/pfbid02QTCSzzj6kjgtYDYHarTcKJ4qz7P6j7JsrCtetKMjmesHYrUrmrodwnJdxA12xkiQl">Thông
                     tin</a>
-                <a class="nav-item nav-link" href="#">Trợ giúp</a>
+                <a class="nav-item nav-link" href="https://www.facebook.com/iuhCalendar/posts/pfbid02msaJPxRrvjMiop6ZcqdwWsjgqhkVdZkVtV2Ks9DX9FHVZ4AHX4MRoRnFkp24RGwkl">Trợ giúp</a>
                 <a class="nav-item nav-link" href="https://1boxstudios.com/">Đăng kí</a>
                 
                 <button class="nav-item nav-link" data-bs-toggle="modal" data-bs-target="#modalShowLich">Test mode</button>
@@ -95,7 +100,7 @@
                 <a class="nav-item nav-link"
                     href="https://www.facebook.com/iuhCalendar/posts/pfbid02QTCSzzj6kjgtYDYHarTcKJ4qz7P6j7JsrCtetKMjmesHYrUrmrodwnJdxA12xkiQl">Thông
                     tin</a>
-                <a class="nav-item nav-link" href="#">Trợ giúp</a>
+                <a class="nav-item nav-link" href="https://www.facebook.com/iuhCalendar/posts/pfbid02msaJPxRrvjMiop6ZcqdwWsjgqhkVdZkVtV2Ks9DX9FHVZ4AHX4MRoRnFkp24RGwkl">Trợ giúp</a>
                 <a class="nav-item nav-link" href="https://1boxstudios.com/">Đăng kí</a>
                 
                 <button class="nav-item nav-link" data-bs-toggle="modal" data-bs-target="#modalShowLich">Test mode</button>
@@ -116,12 +121,12 @@
         <div class="pt-5"></div>
 
         <div class="d-none d-md-flex justify-content-center">
-            <img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20230314103415/Planning-2.png" alt="Banner Image"
+            <img src="img/Planning-2.png" alt="Banner Image"
                 class="w-50 mb-5">
         </div>
 
         <div class="d-sm-flex d-md-none  justify-content-center">
-            <img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20230314103415/Planning-2.png" alt="Banner Image"
+            <img src="img/Planning-2.png" alt="Banner Image"
                 class="w-100 mb-5">
         </div>
 
@@ -129,7 +134,7 @@
             <div class="input-group mb-3">
                 <span class="input-group-text">Trường</span>
                 <select name="school" id="sltSchool" class="form-select" aria-label="Select your school">
-                    <option value="" selected>Click vào đây để chọn trường</option>
+                    <option value="-1" selected>Click vào đây để chọn trường</option>
                     <option value="0">IUH - Trường Đại học Công Nghiệp Tp.HCM</option>
                     <option value="1">UT - Trường Đại học Giao Thông Vận Tải Tp.HCM</option>
                     <option value="2">GDU - Trường Đại học Gia Định</option>
@@ -137,10 +142,10 @@
                 </select>
             </div>
 
-            <p class="ps-3">Hãy truy cập <a id="lblUrl" target="_blank" href="https://sv.iuh.edu.vn/tra-cuu-thong-tin.html">trang
+            <p class="ps-md-3 d-none" id="lblTrangTraCuu">Hãy truy cập <a id="lblUrl" target="_blank" href="https://sv.iuh.edu.vn/tra-cuu-thong-tin.html">trang
                     tra cứu</a> và làm theo hướng dẫn để lấy link lịch học</p>
 
-            <p class="ps-3">Sau khi lấy link lịch học thành công, dán vào ô bên dưới nhé!</p>
+            <p class="ps-md-3">Sau khi lấy link lịch học thành công, dán vào ô bên dưới nhé!</p>
 
 
             <div id="formInputUrl" class="input-group mb-3 d-none">
@@ -212,14 +217,16 @@
 
     var onChangeSchool = () =>{
         let scIndex = sltSchool.value
-        if (!schoolInformation[scIndex]) {
+        if (scIndex == -1 || !schoolInformation[scIndex]) {
             txtKLichHoc.disabled = true;
             btnSubmit.disabled = false;
             formInputUrl.classList.add("d-none");
+            lblTrangTraCuu.classList.add("d-none");
             return;
         }
 
         formInputUrl.classList.remove("d-none");
+        lblTrangTraCuu.classList.remove("d-none");
         
         txtKLichHoc.disabled = false;
         btnSubmit.disabled = false;
@@ -250,12 +257,6 @@
         e.preventDefault();
 
         loadingSubmit(true);
-
-        errMsg.innerText = "Lũi!!";
-        
-        alertMsg.classList.add("show");
-        alertMsg.classList.remove("d-none");
-
         
         getSchendar();
 
@@ -334,6 +335,8 @@
         modalShowLich = new bootstrap.Modal(document.getElementById('modalShowLich'), {
             keyboard: false
         })
+
+        lblTrangTraCuu = $.getElementById("lblTrangTraCuu");
         errMsg = $.getElementById("errMsg");
         alertMsg = $.getElementById("alertMsg");
 

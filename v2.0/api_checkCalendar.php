@@ -1,38 +1,26 @@
 <?php
 error_reporting(0);
 ini_set('display_errors', 1);
-$allowedOrigins = array(
-    'http://127.0.0.1:5500', // Your frontend domain
-    'https://dtbao.io.vn',   // Another allowed domain
-);
 
-$origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
-
-if (in_array($origin, $allowedOrigins)) {
-    header("Access-Control-Allow-Origin: " . $origin);
-    header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-    header("Access-Control-Allow-Headers: Content-Type");
-}
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
 
 // Check if it's a preflight OPTIONS request and respond with CORS headers
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    header("HTTP/1.1 204 No Content");
-    exit();
-}
-define("_URL_API", "https://api-iuh.1boxstudios.cf/v2.0/gateway/calendar.js?");
 
-header("Content-Type: application/json");
+define("_URL_API", "https://api-iuh.1boxstudios.cf/v2.0/gateway/calendar.js?");
 
 $dataHeader = array();
 $dataCalendar = "";
 
-function generateDataGetCalendar($data, $listReplace){
+function generateDataGetCalendar($data, $listReplace)
+{
     global $dataHeader;
     global $dataCalendar;
 
     $dataReturn = array();
 
-    $dataHeader[] = 'Host: '. $data['host'];
+    $dataHeader[] = 'Host: ' . $data['host'];
     $dataHeader[] = 'Sec-Ch-Ua: \"Google Chrome\";v=\"107\", \"Chromium\";v=\"107\", \"Not=A?Brand\";v=\"24\"';
     $dataHeader[] = 'Sec-Ch-Ua-Mobile: ?0';
     $dataHeader[] = 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36';
@@ -40,7 +28,7 @@ function generateDataGetCalendar($data, $listReplace){
     $dataHeader[] = 'Accept: text/html, */*; q=0.01';
     $dataHeader[] = 'X-Requested-With: XMLHttpRequest';
     $dataHeader[] = 'Sec-Ch-Ua-Platform: \"Windows\"';
-    $dataHeader[] = 'Origin: '. ($data['isHttps'] ? "https://" : "http://") .$data['host'];
+    $dataHeader[] = 'Origin: ' . ($data['isHttps'] ? "https://" : "http://") . $data['host'];
     $dataHeader[] = 'Sec-Fetch-Site: same-origin';
     $dataHeader[] = 'Sec-Fetch-Mode: cors';
     $dataHeader[] = 'Sec-Fetch-Dest: empty';
@@ -48,15 +36,15 @@ function generateDataGetCalendar($data, $listReplace){
 
     $dataCalendar = $data['dataLich'];
 
-    
+
     foreach ($listReplace as $key => $value) {
-        $dataCalendar = str_replace('{{'. $key. '}}', $value, $dataCalendar);
+        $dataCalendar = str_replace('{{' . $key . '}}', $value, $dataCalendar);
     }
 
     $dataReturn['header'] = $dataHeader;
     $dataReturn['dataCalendar'] = $dataCalendar;
 
-    $dataReturn['api'] = ($data['isHttps'] ? "https://" : "http://") . $data['host']. $data['pathGetLich'];
+    $dataReturn['api'] = ($data['isHttps'] ? "https://" : "http://") . $data['host'] . $data['pathGetLich'];
 
     return $dataReturn;
 }
@@ -81,7 +69,6 @@ function Curl_Check_API_Status($data)
     }
     curl_close($ch);
     return $statusCode;
-    
 }
 
 if (!isset($_GET['sc']) || !file_exists('DataBin/' . strtolower($_GET['sc']) . '.json')) {
@@ -98,7 +85,7 @@ define('_TRANS_INTO_TIME', $dataSchool['TranslateTime']);
 
 $options = $_GET['o'];
 
-switch ($options){
+switch ($options) {
     case 'csts': // Check status
         if (
             Curl_Check_API_Status(
@@ -133,12 +120,12 @@ switch ($options){
 
         die(json_encode(
             array("status" => 200, "data" => array(
-                'normal' => _URL_API. "sc=$sc&k={$_GET['k']}&token=".         md5(
-                        strtolower($sc) . $timeGenerate . "0" . $_GET['k'] . strtolower($sc)
-                    ) . "&timeGenerate=" . $timeGenerate. "&loai=0",
+                'normal' => _URL_API . "sc=$sc&k={$_GET['k']}&token=" .         md5(
+                    strtolower($sc) . $timeGenerate . "0" . $_GET['k'] . strtolower($sc)
+                ) . "&timeGenerate=" . $timeGenerate . "&loai=0",
                 'onlyStudy' => _URL_API . "sc=$sc&k={$_GET['k']}&token=" .   md5(
                     strtolower($sc) . $timeGenerate . "1" . $_GET['k'] . strtolower($sc)
-                ) . "&timeGenerate=" . $timeGenerate. "&loai=1",
+                ) . "&timeGenerate=" . $timeGenerate . "&loai=1",
                 'onlyExams' => _URL_API . "sc=$sc&k={$_GET['k']}&token=" .         md5(
                     strtolower($sc) . $timeGenerate . "2" . $_GET['k'] . strtolower($sc)
                 ) . "&timeGenerate=" . $timeGenerate . "&loai=2",
@@ -146,9 +133,3 @@ switch ($options){
         ));
         break;
 }
-
-
-
-  
-
-
