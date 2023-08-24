@@ -213,7 +213,7 @@ window.onload = () => {
         }
 
         
-        if (!localStorage.getItem("notiVer") || localStorage.getItem("notikey").toLowerCase == getNotiVer()) {
+        if (!localStorage.getItem("notiVer") || localStorage.getItem("notiVer").toLowerCase() != getNotiVer().toLowerCase()) {
             modalThongTin.show();
             localStorage.setItem("notiVer", getNotiVer());
         }
