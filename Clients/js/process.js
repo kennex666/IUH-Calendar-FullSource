@@ -1,4 +1,4 @@
-    const x01277 = false;
+     const x01277 = true;
         
      function copyURL(txt) {
 
@@ -144,7 +144,6 @@
             let obj = await res.json();
 
             if (obj.status && obj.status == 200){
-                console.log(obj.data.normal);
                 modalShowLich.show();
                 $.getElementById("urlLichHoc").innerText = obj.data.onlyStudy;
                 $.getElementById("urlLichThi").innerText = obj.data.onlyExams;
@@ -162,10 +161,19 @@
             return;
         }
 
-    }
+}
+    
+const getNotiVer = () => {
+    return $.getElementById("modalThongTin").getAttribute("notiVer");
+}
 
-    window.onload = () => {
+window.onload = () => {
+    
         modalShowLich = new bootstrap.Modal(document.getElementById('modalShowLich'), {
+            keyboard: false
+        })
+
+        modalThongTin = new bootstrap.Modal(document.getElementById('modalThongTin'), {
             keyboard: false
         })
 
@@ -204,4 +212,11 @@
             copyURL($.getElementById("urlLichHocThi"));
         }
 
+        
+        if (!localStorage.getItem("notiVer") || localStorage.getItem("notikey").toLowerCase == getNotiVer()) {
+            modalThongTin.show();
+            localStorage.setItem("notiVer", getNotiVer());
+        }
+
+       
     }
