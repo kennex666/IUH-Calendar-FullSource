@@ -1,6 +1,9 @@
 <?php
+error_reporting(0);
+ini_set('display_errors', 1);
 
 require_once 'Package/GenerateICS.php';
+require_once 'Package/functions.php';
 
 if (!isset($_GET['sc'])){
     die(json_encode(array('error' => 'Lỗi: Không có mã trường. Vui lòng liên hệ m.me/DThaiBao666 để được hỗ trợ!')));}
@@ -15,7 +18,9 @@ if (!isset($_GET['token']))
 if (!isset($_GET['timeGenerate']))
     die(json_encode(array('error' => 'Lỗi: Không có thời gian tạo. Vui lòng liên hệ m.me/DThaiBao666 để được hỗ trợ!')));
 
-if ($_GET['token'] != md5('iuh'.$_GET['timeGenerate'].$_GET['k'].'iuh'))
+$loaiToken = (isset($_GET['loai'])) ? $_GET['loai'] : 0;
+
+if ($_GET['token'] != md5(strtolower($_GET['sc']).$_GET['timeGenerate']. $loaiToken .$_GET['k']. strtolower($_GET['sc'])))
     die(json_encode(array('error' => 'Lỗi: Token xác minh không hợp lệ. Vui lòng liên hệ m.me/DThaiBao666 để được hỗ trợ!')));
 
 
@@ -36,6 +41,7 @@ if ($_GET['timeGenerate'] + 331536000 < time()) {
 
     $event->save();
     $event->show();
+    exit();
 }
 
 // DEBUG
@@ -44,15 +50,18 @@ if ($_GET['timeGenerate'] + 331536000 < time()) {
 //      ));;
 // exit();
 //time() > $lastTimeRequest + 24 * 60 * 60
-$tuan1 = date('d/m/Y', time());
+//if (isset($dataSchool['informations']['timeformat'])){
+	//if ($dataSchool['informations']['timeformat'] == "ms"){
+	
+	$tuan1 = date('d/m/Y', time());
 
-$tuan2 = date('d/m/Y', time() + 7 * 24 * 60 * 60);
+	$tuan2 = date('d/m/Y', time() + 7 * 24 * 60 * 60);
 
-$tuan3 = date('d/m/Y', time() + 14 * 24 * 60 * 60);
+	$tuan3 = date('d/m/Y', time() + 14 * 24 * 60 * 60);
 
-$tuan4 = date('d/m/Y', time() + 21 * 24 * 60 * 60);
+	$tuan4 = date('d/m/Y', time() + 21 * 24 * 60 * 60);
 
-$tuan5 = date('d/m/Y', time() + 28 * 24 * 60 * 60);
+	$tuan5 = date('d/m/Y', time() + 28 * 24 * 60 * 60);
 
 if (isset($_GET['loai']) && $_GET['loai'] != 0) {
     $loai = $_GET['loai'];
@@ -63,22 +72,119 @@ if (isset($_GET['loai']) && $_GET['loai'] != 0) {
         $event->setName("Lịch thi ({$dataSchool['schoolCode']})");
     }
 
-    $result = createCalendar(analyticsData(Curl_Request_Get($tuan1, $loai), $loai));
-    createCalendar(analyticsData(Curl_Request_Get($tuan2, $loai), $loai));
-    createCalendar(analyticsData(Curl_Request_Get($tuan3, $loai), $loai));
-    createCalendar(analyticsData(Curl_Request_Get($tuan4, $loai), $loai));
-    createCalendar(analyticsData(Curl_Request_Get($tuan5, $loai), $loai));
+   
+    $result = createCalendar(analyticsData(Curl_Request_Get(
+        generateDataGetCalendar($dataSchool['informations'], array(
+            'k' => $_GET['k'],
+            'pNgayHienTai' => $tuan1,
+            'pLoaiLich' => $loai,
+        ))
+    ), $loai));
+
+    createCalendar(analyticsData(Curl_Request_Get(
+        generateDataGetCalendar($dataSchool['informations'], array(
+            'k' => $_GET['k'],
+            'pNgayHienTai' => $tuan2,
+            'pLoaiLich' => $loai,
+        ))
+    ), $loai));
+    createCalendar(analyticsData(Curl_Request_Get(
+        generateDataGetCalendar($dataSchool['informations'], array(
+            'k' => $_GET['k'],
+            'pNgayHienTai' => $tuan3,
+            'pLoaiLich' => $loai,
+        ))
+    ), $loai));
+    createCalendar(analyticsData(Curl_Request_Get(
+        generateDataGetCalendar($dataSchool['informations'], array(
+            'k' => $_GET['k'],
+            'pNgayHienTai' => $tuan4,
+            'pLoaiLich' => $loai,
+        ))
+    ), $loai));
+    createCalendar(analyticsData(Curl_Request_Get(
+        generateDataGetCalendar($dataSchool['informations'], array(
+            'k' => $_GET['k'],
+            'pNgayHienTai' => $tuan5,
+            'pLoaiLich' => $loai,
+        ))
+    ), $loai));
 } else {
-    $result = createCalendar(analyticsData(Curl_Request_Get($tuan1, 1), 1));
-    createCalendar(analyticsData(Curl_Request_Get($tuan2, 1), 1));
-    createCalendar(analyticsData(Curl_Request_Get($tuan3, 1), 1));
-    createCalendar(analyticsData(Curl_Request_Get($tuan4, 1), 1));
-    createCalendar(analyticsData(Curl_Request_Get($tuan5, 1), 1));
-    createCalendar(analyticsData(Curl_Request_Get($tuan1, 2), 2));
-    createCalendar(analyticsData(Curl_Request_Get($tuan2, 2), 2));
-    createCalendar(analyticsData(Curl_Request_Get($tuan3, 2), 2));
-    createCalendar(analyticsData(Curl_Request_Get($tuan4, 2), 2));
-    createCalendar(analyticsData(Curl_Request_Get($tuan5, 2), 2));
+    $loai = 1;
+    $result = createCalendar(analyticsData(Curl_Request_Get(
+        generateDataGetCalendar($dataSchool['informations'], array(
+            'k' => $_GET['k'],
+            'pNgayHienTai' => $tuan1,
+            'pLoaiLich' => $loai,
+        ))
+    ), $loai));
+
+    createCalendar(analyticsData(Curl_Request_Get(
+        generateDataGetCalendar($dataSchool['informations'], array(
+            'k' => $_GET['k'],
+            'pNgayHienTai' => $tuan2,
+            'pLoaiLich' => $loai,
+        ))
+    ), $loai));
+    createCalendar(analyticsData(Curl_Request_Get(
+        generateDataGetCalendar($dataSchool['informations'], array(
+            'k' => $_GET['k'],
+            'pNgayHienTai' => $tuan3,
+            'pLoaiLich' => $loai,
+        ))
+    ), $loai));
+    createCalendar(analyticsData(Curl_Request_Get(
+        generateDataGetCalendar($dataSchool['informations'], array(
+            'k' => $_GET['k'],
+            'pNgayHienTai' => $tuan4,
+            'pLoaiLich' => $loai,
+        ))
+    ), $loai));
+    createCalendar(analyticsData(Curl_Request_Get(
+        generateDataGetCalendar($dataSchool['informations'], array(
+            'k' => $_GET['k'],
+            'pNgayHienTai' => $tuan5,
+            'pLoaiLich' => $loai,
+        ))
+    ), $loai));
+
+
+    $loai = 2;
+    createCalendar(analyticsData(Curl_Request_Get(
+        generateDataGetCalendar($dataSchool['informations'], array(
+            'k' => $_GET['k'],
+            'pNgayHienTai' => $tuan1,
+            'pLoaiLich' => $loai,
+        ))
+    ), $loai));
+    createCalendar(analyticsData(Curl_Request_Get(
+        generateDataGetCalendar($dataSchool['informations'], array(
+            'k' => $_GET['k'],
+            'pNgayHienTai' => $tuan2,
+            'pLoaiLich' => $loai,
+        ))
+    ), $loai));
+    createCalendar(analyticsData(Curl_Request_Get(
+        generateDataGetCalendar($dataSchool['informations'], array(
+            'k' => $_GET['k'],
+            'pNgayHienTai' => $tuan3,
+            'pLoaiLich' => $loai,
+        ))
+    ), $loai));
+    createCalendar(analyticsData(Curl_Request_Get(
+        generateDataGetCalendar($dataSchool['informations'], array(
+            'k' => $_GET['k'],
+            'pNgayHienTai' => $tuan4,
+            'pLoaiLich' => $loai,
+        ))
+    ), $loai));
+    createCalendar(analyticsData(Curl_Request_Get(
+        generateDataGetCalendar($dataSchool['informations'], array(
+            'k' => $_GET['k'],
+            'pNgayHienTai' => $tuan5,
+            'pLoaiLich' => $loai,
+        ))
+    ), $loai));
 }
 $event->save();
 $event->show();

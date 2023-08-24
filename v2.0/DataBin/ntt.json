@@ -11,7 +11,8 @@
         "host": "phongdaotao.ntt.edu.vn",
         "pathGetLich": "/SinhVienTraCuu/GetDanhSachLichTheoTuan",
         "pathInputInformation": "/tra-cuu-thong-tin.html",
-        "dataLich": "k={{k}}&pNgayHienTai={{pNgayHienTai}}&pLoaiLich={{pLoaiLich}}"
+        "dataLich": "k={{k}}&pNgayHienTai={{pNgayHienTai}}&pLoaiLich={{pLoaiLich}}",
+		"timeformat": "ms"
     },
     "TranslateTime": {
         "1": "06:30",

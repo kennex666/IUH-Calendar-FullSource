@@ -42,7 +42,7 @@
             "urlChuan": "https://sinhvien.giadinh.edu.vn/tra-cuu/lich-hoc-tuan.html?k="
         },
         {
-            "sc": "nnt",
+            "sc": "ntt",
             "name": "Trường Đại học Nguyễn Tất Thành",
             "tc": "https://phongdaotao.ntt.edu.vn/tra-cuu-thong-tin.html",
             "urlChuan": "https://phongdaotao.ntt.edu.vn/tra-cuu/lich-hoc-tuan.html?k="

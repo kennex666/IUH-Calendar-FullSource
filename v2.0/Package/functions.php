@@ -2,12 +2,6 @@
 $dataHeader = array();
 $dataCalendar = "";
 
-$listReplace = array(
-    "k" => $_GET['k'],
-    "pNgayHienTai" => date("d/m/Y", time()),
-    "pLoaiLich" => 1,
-);
-
 function generateDataGetCalendar($data, $listReplace){
     global $dataHeader;
     global $dataCalendar;
@@ -22,7 +16,7 @@ function generateDataGetCalendar($data, $listReplace){
     $dataHeader[] = 'Accept: text/html, */*; q=0.01';
     $dataHeader[] = 'X-Requested-With: XMLHttpRequest';
     $dataHeader[] = 'Sec-Ch-Ua-Platform: \"Windows\"';
-    $dataHeader[] = 'Origin: '. ($data['isHttps'] ? "https://" : "http://") .$data['origin'];
+    $dataHeader[] = 'Origin: '. ($data['isHttps'] ? "https://" : "http://") .$data['host'];
     $dataHeader[] = 'Sec-Fetch-Site: same-origin';
     $dataHeader[] = 'Sec-Fetch-Mode: cors';
     $dataHeader[] = 'Sec-Fetch-Dest: empty';
@@ -38,7 +32,7 @@ function generateDataGetCalendar($data, $listReplace){
     $dataReturn['header'] = $dataHeader;
     $dataReturn['dataCalendar'] = $dataCalendar;
 
-    $dataReturn['api'] = ($data['isHttps'] ? "https://" : "http://") . $data['origin']. $data['pathGetLich'];
+    $dataReturn['api'] = ($data['isHttps'] ? "https://" : "http://") . $data['host']. $data['pathGetLich'];
 
     return $dataReturn;
 }
@@ -62,6 +56,28 @@ function Curl_Request_Get($data)
     return $result;
 }
 
+function Curl_Check_API_Status($data)
+{
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $data['api']);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data['dataCalendar']);
+    curl_setopt($ch, CURLOPT_ENCODING, 'gzip, deflate');
+
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $data['header']);
+
+    $result = curl_exec($ch);
+    $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    if (curl_errno($ch)) {
+        return 500;
+    }
+    curl_close($ch);
+    return $statusCode;
+    
+}
+
 
 function getLich($data, $loaiLich = 1)
 {
@@ -77,7 +93,7 @@ function getLich($data, $loaiLich = 1)
                 $value1 = '[Tạm ngưng] [line_wrap] ' . $value1;
                 $flag = 'NORMAL';
             } else if ($loaiLich == 2) {
-                $value1 = '[LỊCH THI] ' . $value1;
+                $value1 = '[THI] ' . $value1;
             }
             $value1 = str_replace('<p>', '<p>[line_wrap] ', $value1);
             $value[$key1] = rip_tags(strip_tags($value1));
@@ -207,8 +223,9 @@ function createCalendar($getData)
         $event->addEvent(date('d/m/Y H:i', time() + 345600),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.", '');
         $event->addEvent(date('d/m/Y H:i', time() + 432000),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.", '');
         $event->addEvent(date('d/m/Y H:i', time() + 518400),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.", '');
-
-        return false;
+        $event->save();
+        $event->show();
+        exit();
     }
 
     foreach ($getData as $daysofweek) {
