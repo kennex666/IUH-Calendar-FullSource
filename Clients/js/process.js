@@ -1,20 +1,15 @@
-const x01277 = false;
+    const x01277 = false;
         
-    function copyURL(btn){
-        var copyText = btn;
+     function copyURL(txt) {
 
-        // Select the text field
-        copyText.select();
-        copyText.setSelectionRange(0, 99999); // For mobile devices
+         var content = txt;
 
-        //navigator.clipboard.writeText(copyText.value);
-		if (document.execCommand('copy'))
-        // Alert the copied text
-			alert("Copy thành công: " + copyText.value);
-		else
-			alert("Lỗi: Trình duyệt bạn không cho phép copy!");
-    }
-	
+        content.select();
+        document.execCommand('copy');
+
+         alert("Copied!");
+         
+      }
 	const x01629=()=>{if (!x01277)debugger;}
     setInterval(() => {x01629()}, 10);
 
@@ -151,9 +146,9 @@ const x01277 = false;
             if (obj.status && obj.status == 200){
                 console.log(obj.data.normal);
                 modalShowLich.show();
-                $.getElementById("urlLichHoc").value = obj.data.onlyStudy;
-                $.getElementById("urlLichThi").value = obj.data.onlyExams;
-                $.getElementById("urlLichHocThi").value = obj.data.normal;
+                $.getElementById("urlLichHoc").innerText = obj.data.onlyStudy;
+                $.getElementById("urlLichThi").innerText = obj.data.onlyExams;
+                $.getElementById("urlLichHocThi").innerText = obj.data.normal;
                 loadingSubmit(false);
 
             }else{
