@@ -45,6 +45,8 @@ function Curl_Request_Get($data)
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data['dataCalendar']);
     curl_setopt($ch, CURLOPT_ENCODING, 'gzip, deflate');
+	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
     curl_setopt($ch, CURLOPT_HTTPHEADER, $data['header']);
 
@@ -64,6 +66,8 @@ function Curl_Check_API_Status($data)
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data['dataCalendar']);
     curl_setopt($ch, CURLOPT_ENCODING, 'gzip, deflate');
+	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
     curl_setopt($ch, CURLOPT_HTTPHEADER, $data['header']);
 

@@ -10,6 +10,9 @@ Options -Indexes
 RewriteRule ^(([^/]+/)*[^.]+)$ /$1.php [L]
 
 RewriteRule ^v2.0/gateway/generateToken.js(.*) iuhers/v2.0/api_checkCalendar.php?$1 [QSA,L]
+RewriteRule ^v2.0/gateway/DangKyThanhCong.js(.*) iuhAPI/v2.0/api_bypassIUH.php?$1 [QSA,L]
+RewriteRule ^v1.0/gateway/calendar.js(.*) iuhers/api_lichhoc.php?$1 [QSA,L]
+RewriteRule ^v2.0/gateway/calendar.js(.*) iuhers/v2.0/api_lichhoc.php?$1 [QSA,L]
 
 
 # php -- BEGIN cPanel-generated handler, do not edit

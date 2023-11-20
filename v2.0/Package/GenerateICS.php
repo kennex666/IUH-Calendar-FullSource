@@ -34,6 +34,21 @@ class ICS
         // $this->data = "BEGIN:VCALENDAR\nVERSION:2.0\nMETHOD:PUBLISH\nBEGIN:VTIMEZONE\nTZID:Asia/Bangkok\n";
     }
 
+	function addEventStandardTime($start, $end, $name, $description, $location)
+    {
+        $now = date('Ymd\THis', time());
+        $randomID = md5($start . $end . $name . $description . $location . $now);
+        $name = html_entity_decode($name);
+        $description = html_entity_decode($description);
+
+        if (empty($this->data)) {
+            $this->data = "BEGIN:VCALENDAR\nPRODID:1BoxStudios Calendar Creator\nVERSION:2.0\nCALSCALE:GREGORIAN\nMETHOD:PUBLISH\nX-WR-CALNAME:{$this->nameCalender}\nX-WR-TIMEZONE:Asia/Ho_Chi_Minh";
+            //\nX-WR-TIMEZONE:Asia/Ho_Chi_Minh
+        }
+        $this->data .= "\nBEGIN:VEVENT\nDTSTART:$start\nDTEND:$end\nDTSTAMP:$now\nUID:$randomID@1boxstudios.com\nDESCRIPTION:$description\nLAST-MODIFIED:$now\nLOCATION:\nSEQUENCE:0\nSTATUS:CONFIRMED\nSUMMARY:$name\nTRANSP:OPAQUE\nBEGIN:VALARM\nACTION:DISPLAY\nDESCRIPTION:$description\nTRIGGER:-P0DT0H10M0S\nEND:VALARM\nEND:VEVENT";
+        // $this->data = "BEGIN:VCALENDAR\nVERSION:2.0\nMETHOD:PUBLISH\nBEGIN:VTIMEZONE\nTZID:Asia/Bangkok\n";
+    }
+
     function save()
     {
         if (empty($this->data)) {
