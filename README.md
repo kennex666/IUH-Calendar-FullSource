@@ -4,7 +4,7 @@ Include API and Clients which can help you access your school calendar (Works on
 
 Hỗ trợ lịch học của IUH (Đại học Công nghiệp TP.HCM), GDU (Đại học Gia Định), NTT (Đại học Nguyễn Tất Thành), UT (Đại học Giao thông vận tải TP.HCM)
 
-Project có tính kế thừa, bạn có thể đóng góp thêm trường bạn tại file databin. Mình sẽ cập nhật nếu trường bạn sử dụng mẫu giống [trang này](https://iuh.edu.vn) và có ứng dụng ASC School
+Project có tính kế thừa, bạn có thể đóng góp thêm trường bạn tại file databin. Mình sẽ cập nhật nếu trường bạn sử dụng mẫu giống [trang này](https://sv.iuh.edu.vn) và có ứng dụng ASC School
 
 ## Về dự án
 
