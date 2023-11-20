@@ -10,8 +10,6 @@ if (!isset($_GET['sc'])){
     
 $dataSchool = json_decode(file_get_contents('DataBin/'. strtolower($_GET['sc']).'.json'), true);
 
-//$_GET['k'] = 'pbekzkCNs99D4hRJsLvuTrKCzVt7AeUhb0YmHxpmMFM';
-
 if (!isset($_GET['token']))
     die(json_encode(array('error' => 'Lỗi: Không có token xác minh. Vui lòng liên hệ m.me/DThaiBao666 để được hỗ trợ!')));
 
