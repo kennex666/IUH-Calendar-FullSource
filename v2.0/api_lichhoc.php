@@ -108,6 +108,8 @@ if (isset($_GET['loai']) && $_GET['loai'] != 0) {
         ))
     ), $loai));
 } else {
+	$event->setName("Lịch học & thi ({$dataSchool['schoolCode']})");
+
     $loai = 1;
     $result = createCalendar(analyticsData(Curl_Request_Get(
         generateDataGetCalendar($dataSchool['informations'], array(

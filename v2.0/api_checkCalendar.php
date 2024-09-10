@@ -8,7 +8,7 @@ header("Access-Control-Allow-Headers: Content-Type");
 
 // Check if it's a preflight OPTIONS request and respond with CORS headers
 
-define("_URL_API", "https://api-iuh.1boxstudios.cf/v2.0/gateway/calendar.js?");
+define("_URL_API", "https://api-schendar.1boxstudios.com/v2.0/gateway/calendar.js?");
 
 $dataHeader = array();
 $dataCalendar = "";
@@ -58,6 +58,8 @@ function Curl_Check_API_Status($data)
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data['dataCalendar']);
     curl_setopt($ch, CURLOPT_ENCODING, 'gzip, deflate');
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
     curl_setopt($ch, CURLOPT_HTTPHEADER, $data['header']);
 
@@ -103,17 +105,7 @@ switch ($options) {
         ));
         break;
     case 'gntk': // Generate token
-        if (
-            Curl_Check_API_Status(
-                generateDataGetCalendar($dataSchool['informations'], array(
-                    'k' => $_GET['k'],
-                    'pNgayHienTai' => date('d/m/Y', time()),
-                    'pLoaiLich' => 1,
-                ))
-            ) == 500
-        ) {
-            die(json_encode(array('error' => 'Lỗi: Lịch học không hợp lệ!', 'code' => 503)));
-        }
+       
 
         $timeGenerate = time();
         $sc = strtolower($_GET['sc']);
