@@ -219,14 +219,16 @@ function rip_tags($string)
 
 function createCalendar($getData)
 {
+	
+	$timeFetchAPI = date("h:i:sa d/m/Y", time());
     global $event;
     if (is_null($getData['mon']['time'])) {
-        $event->addEvent(date('d/m/Y H:i', time() + 86400),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.\\nLink: m.me/DThaiBao616 hoặc contact@1boxstudios.com", '');
-        $event->addEvent(date('d/m/Y H:i', time() + 172800),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.\\nLink: m.me/DThaiBao616 hoặc contact@1boxstudios.com", '');
-        $event->addEvent(date('d/m/Y H:i', time() + 259200),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.\\nLink: m.me/DThaiBao616 hoặc contact@1boxstudios.com", '');
-        $event->addEvent(date('d/m/Y H:i', time() + 345600),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.\\nLink: m.me/DThaiBao616 hoặc contact@1boxstudios.com", '');
-        $event->addEvent(date('d/m/Y H:i', time() + 432000),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.\\nLink: m.me/DThaiBao616 hoặc contact@1boxstudios.com", '');
-        $event->addEvent(date('d/m/Y H:i', time() + 518400),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.\\nLink: m.me/DThaiBao616 hoặc contact@1boxstudios.com", '');
+        $event->addEvent(date('d/m/Y H:i', time() + 86400),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.\\nLink: m.me/DThaiBao616 hoặc contact@1boxstudios.com\n\nLấy lịch lúc: $timeFetchAPI", '');
+        $event->addEvent(date('d/m/Y H:i', time() + 172800),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.\\nLink: m.me/DThaiBao616 hoặc contact@1boxstudios.com\n\nLấy lịch lúc: $timeFetchAPI", '');
+        $event->addEvent(date('d/m/Y H:i', time() + 259200),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.\\nLink: m.me/DThaiBao616 hoặc contact@1boxstudios.com\n\nLấy lịch lúc: $timeFetchAPI", '');
+        $event->addEvent(date('d/m/Y H:i', time() + 345600),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.\\nLink: m.me/DThaiBao616 hoặc contact@1boxstudios.com\n\nLấy lịch lúc: $timeFetchAPI", '');
+        $event->addEvent(date('d/m/Y H:i', time() + 432000),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.\\nLink: m.me/DThaiBao616 hoặc contact@1boxstudios.com\n\nLấy lịch lúc: $timeFetchAPI", '');
+        $event->addEvent(date('d/m/Y H:i', time() + 518400),  date('d/m/Y H:i', time()), "Lỗi hệ thống lịch học!", "Hãy báo với Admin nếu bạn gặp sự cố này.\\nLink: m.me/DThaiBao616 hoặc contact@1boxstudios.com\n\nLấy lịch lúc: $timeFetchAPI", '');
         $event->save();
         $event->show();
         exit();
@@ -259,7 +261,7 @@ function createCalendar($getData)
                                 'end' => '1',
                             );
                         }
-                        $event->addEvent($time . ' ' . _TRANS_INTO_TIME[$getHM['start']], $time . ' ' . _TRANS_INTO_TIME[$getHM['end'] + 1] , '[' . explode(' ', explode('Phòng: ', explode('\n', $value2)[3])[1])[0]. '] '. explode('\n', $value2)[0], $value2. "\\n----\\nLấy lịch lúc ". date("h:i:sa d/m/Y", time())  ."\\nTạo lịch bởi: Schendar (1.0.6) - 1Box Studios (https://1boxstudios.com/schendar)", '');
+                        $event->addEvent($time . ' ' . _TRANS_INTO_TIME[$getHM['start']], $time . ' ' . _TRANS_INTO_TIME[$getHM['end'] + 1] , '[' . explode(' ', explode('Phòng: ', explode('\n', $value2)[3])[1])[0]. '] '. explode('\n', $value2)[0], $value2. "\\n----\\nLấy lịch lúc ". $timeFetchAPI  ."\\nTạo lịch bởi: Schendar (1.0.6) - 1Box Studios (https://1boxstudios.com/schendar)", '');
                     }
                 }
             }
