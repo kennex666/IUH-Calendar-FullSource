@@ -25,6 +25,10 @@ Dự án được hỗ trợ bởi [1Box Studios](https://1boxstudios.com)
 
 Các dự án khác của 1Box Studios: [Xem tại đây](https://1boxstudios.com/our-release-products/)
 
+## Đóng góp
+
+Cảm ơn bạn **Lê Bảo Khánh Duy** đã góp ý thêm tính năng kiểm tra thời gian tạo lịch học.
+
 ## Lưu ý khi sử dụng mã nguồn
 
 Mặc dù mã nguồn mở, nhưng rất mong các bạn khi sử dụng sẽ để thông tin về mã nguồn hoặc studio đã tài trợ mình thực hiện dự án.
